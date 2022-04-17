@@ -9,7 +9,7 @@ Try to modify the code to work with Zotero 6.x (not compatible with old versions
 Thanks for the discusssions in the [issue](https://github.com/mronkko/ZoteroQuickLook/issues/44#issuecomment-1079053758) and the original project - [ZoteroQuickLook](https://github.com/mronkko/ZoteroQuickLook). 
 
 *Amateur coding, not sure it can work well on every system (Only test on macOS).*
-*Another version could be tried [ZoteroQuickLookReload]https://github.com/404neko/ZoteroQuickLookReload/commits/main).*
+*Another version could be tried [ZoteroQuickLookReload](https://github.com/404neko/ZoteroQuickLookReload/commits/main).*
 
 # Status
 

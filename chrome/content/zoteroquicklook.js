@@ -10,10 +10,6 @@ Zotero.ZoteroQuickLook = {
     viewerBaseArguments:null,
 
 	init: async function () {
-		if (document.getElementById('zotero-itemmenu') == null) {
-			setTimeout(() => { this.init(); }, 1000);
-			return;
-		}
 		document.getElementById('zotero-itemmenu').addEventListener("popupshowing", this.showQuickLookMenu, false);
 		document.getElementById('zotero-items-tree').addEventListener("keydown",this.onKey,false);
 
@@ -205,14 +201,11 @@ Zotero.ZoteroQuickLook = {
 
 
 			if(Zotero.isLinux){
-				const linux_bins = ["/usr/bin/sushi", "/usr/bin/gloobus-preview"];
-				const linux_existing_bins = linux_bins.filter(bin => Zotero.File.pathToFile(bin).exists());
-				if (linux_existing_bins.length == 0) {
-					alert("All supported software are mssing [" + linux_bins.toString() + "]. Please install either one or specify a custom view command instead.");
+				this.viewerExecutable = Zotero.File.pathToFile("/usr/bin/gloobus-preview");
+				if(this.viewerExecutable.exists() === false){
+					alert("/usr/bin/gloobus-preview is missing. Please install Gloobus or specify a custom view command instead.");
 					return;
 				}
-				// take the first existing bin as higher priority
-				this.viewerExecutable = Zotero.File.pathToFile(linux_existing_bins[0]);
 			}
 
 			if (this.getPref("usefilenameworkaround")) {
@@ -281,9 +274,11 @@ Zotero.ZoteroQuickLook = {
 		//This is a workaround for firefox bug. See https://www.zotero.org/trac/ticket/957
 		//The workaround can be disabled with a hidden preference.
 		//This feature is not supported on Windows and enabling it would just cause problems.
-		if (this.getPref("usefilenameworkaround") && ! Zotero.isWin){
-			filename=filename.replace(/[^A-Z0-9.:\/\\_\- ]/gi,'*');
-		}
+		
+		//Remove next 3 lines code to work for the Chinese name files (https://github.com/mronkko/ZoteroQuickLook/issues/44#issuecomment-1079624343)
+		//if (this.getPref("usefilenameworkaround") && ! Zotero.isWin){
+		//	filename=filename.replace(/[^A-Z0-9.:\/\\_\- ]/gi,'*');
+		//}
 		return filename;
 	},
 
@@ -453,6 +448,8 @@ Checks the attachment file or writes a content of a note to a file and then push
 	*/
 
 	openQuickLook: async function(items) {
+		this.viewerBaseArguments=['-p'];
+      this.viewerExecutable = Zotero.File.pathToFile("/usr/bin/qlmanage");
 
 		Zotero.debug("ZoteroQuickLook: opening viewer",3);
 

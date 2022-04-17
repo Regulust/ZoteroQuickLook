@@ -3,9 +3,17 @@ ZoteroQuickLook
 
 This open source project implements QuickLook in Zotero.
 
+# Update
+
+Try to modify the code to work with Zotero 6.x (not compatible with old versions).
+Thanks for the discusssions in the [issue](https://github.com/mronkko/ZoteroQuickLook/issues/44#issuecomment-1079053758) and the original [project](https://github.com/mronkko/ZoteroQuickLook). 
+
+*Amateur coding, not sure it can work well on every system (Only tried on macOS).*
+*Another version could be tried [ZoteroQuickLookReload/]]https://github.com/404neko/ZoteroQuickLookReload/commits/main).*
+
 # Status
 
-This plugin is not currently being actively maintained. It may not work with current or beta versions of Zotero. If someone is interested in taking over maintenance of the plugin, please contact @bwiernik. 
+*This plugin is not currently being actively maintained. It may not work with current or beta versions of Zotero. If someone is interested in taking over maintenance of the plugin, please contact @bwiernik.* 
 
 # Installing
 
